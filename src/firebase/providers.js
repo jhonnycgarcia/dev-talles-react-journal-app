@@ -18,11 +18,13 @@ export const signInWithGoogle = async() => {
             email,
             photoURL,
             uid,
+            error: null,
         }
 
     } catch (err) {
         // Handle Errors here.
         const errorCode = err.code;
+        console.log('errorCode', errorCode);
         const errorMessage = err.message;
         // auth/cancelled-popup-request
         console.log('error', err);
