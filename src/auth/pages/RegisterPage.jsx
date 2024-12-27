@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { Button, Grid2, Link, TextField, Typography } from "@mui/material"
+import { useMemo, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Alert, Button, Grid2, Link, TextField, Typography } from "@mui/material"
 import { Link as RouterLink } from "react-router-dom"
 
 import { useForm } from "../../hooks"
@@ -29,11 +29,14 @@ export const RegisterPage = () => {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const dispatch = useDispatch();
 
+  const { status, errorMessage } = useSelector(state => state.auth);
+
+  const isCheckingAuthentication = useMemo(() => status === 'checking', [status]);
+
   const onSubmit = (e) => {
     e.preventDefault();
     setFormSubmitted(true);
     if(!isFormValid) { return; }
-    console.log('submit', { displayName, email, password });
     dispatch(startCreatingUserWithEmailAndPassword({ displayName, email, password }));
   }
 
@@ -84,8 +87,21 @@ export const RegisterPage = () => {
           </Grid2>
 
           <Grid2 container size={12} spacing={2} sx={{ mb: 2, mt: 1 }}>
+            <Grid2 
+              size={{ xs: 12 }}
+              display={ errorMessage ? 'block' : 'none' }
+            >
+              <Alert severity="error">
+                { errorMessage }
+              </Alert>
+            </Grid2>
             <Grid2 size={{ xs: 12 }}>
-              <Button type="submit" variant="contained" fullWidth>
+              <Button 
+                type="submit" 
+                variant="contained" 
+                fullWidth
+                disabled={ isCheckingAuthentication }
+              >
                 Crear Cuenta
               </Button>
             </Grid2>
