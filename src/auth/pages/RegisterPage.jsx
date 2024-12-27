@@ -2,6 +2,7 @@ import { Button, Grid2, Link, TextField, Typography } from "@mui/material"
 import { Link as RouterLink } from "react-router-dom"
 import { AuthLayout } from "../layout/AuthLayout"
 import { useForm } from "../../hooks"
+import { useState } from "react";
 
 const formData = {
   displayName: 'Pedro Lars',
@@ -18,11 +19,14 @@ const formValidations = {
 export const RegisterPage = () => {
   const { 
     displayName, email, password, onInputChange,
-    displayNameValid, emailValid, passwordValid,
+    isFormValid, displayNameValid, emailValid, passwordValid,
   } = useForm(formData, formValidations);
+  const [formSubmitted, setFormSubmitted] = useState(false)
 
   const onSubmit = (e) => {
     e.preventDefault();
+    setFormSubmitted(true);
+    if(!isFormValid) { return; }
     console.log('submit', { displayName, email, password });
   }
 
@@ -39,6 +43,8 @@ export const RegisterPage = () => {
               name="displayName"
               value={ displayName }
               onChange={ onInputChange }
+              error={ !!displayNameValid && formSubmitted }
+              helperText={ displayNameValid }
             />
           </Grid2>
 
@@ -51,6 +57,8 @@ export const RegisterPage = () => {
               name="email"
               value={ email }
               onChange={ onInputChange }
+              error={ !!emailValid && formSubmitted }
+              helperText={ emailValid }
             />
           </Grid2>
 
@@ -63,6 +71,8 @@ export const RegisterPage = () => {
               name="password"
               value={ password }
               onChange={ onInputChange }
+              error={ !!passwordValid && formSubmitted }
+              helperText={ passwordValid }
             />
           </Grid2>
 
