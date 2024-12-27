@@ -11,7 +11,7 @@ import { useMemo } from "react"
 
 export const LoginPage = () => {
 
-  const { email, password, onInputChange, onResetForm } = useForm({
+  const { email, password, onInputChange } = useForm({
     email: 'plars@yopmail.com',
     password: '123456',
   });

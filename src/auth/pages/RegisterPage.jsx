@@ -1,12 +1,25 @@
 import { Button, Grid2, Link, TextField, Typography } from "@mui/material"
 import { Link as RouterLink } from "react-router-dom"
 import { AuthLayout } from "../layout/AuthLayout"
-import { Google } from "@mui/icons-material"
+import { useForm } from "../../hooks"
+
+const formData = {
+  displayName: 'Pedro Lars',
+  email: 'plars@yopmail.com',
+  password: '123456',
+}
 
 export const RegisterPage = () => {
+  const { displayName, email, password, onInputChange } = useForm(formData);
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    console.log('submit', { displayName, email, password });
+  }
+
   return (
     <AuthLayout title="Crear Cuenta">
-      <form>
+      <form onSubmit={ onSubmit }>
         <Grid2 container spacing={2}>
           <Grid2 size={{ xs: 12 }} sx={{ mt: 2 }}>
             <TextField
@@ -14,6 +27,9 @@ export const RegisterPage = () => {
               type="text"
               placeholder="Nombre Completo"
               fullWidth
+              name="displayName"
+              value={ displayName }
+              onChange={ onInputChange }
             />
           </Grid2>
 
@@ -23,6 +39,9 @@ export const RegisterPage = () => {
               type="email"
               placeholder="email@example.com"
               fullWidth
+              name="email"
+              value={ email }
+              onChange={ onInputChange }
             />
           </Grid2>
 
@@ -32,12 +51,15 @@ export const RegisterPage = () => {
               type="password"
               placeholder="******"
               fullWidth
+              name="password"
+              value={ password }
+              onChange={ onInputChange }
             />
           </Grid2>
 
           <Grid2 container size={12} spacing={2} sx={{ mb: 2, mt: 1 }}>
             <Grid2 size={{ xs: 12 }}>
-              <Button variant="contained" fullWidth>
+              <Button type="submit" variant="contained" fullWidth>
                 Crear Cuenta
               </Button>
             </Grid2>
