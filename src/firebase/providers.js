@@ -64,14 +64,14 @@ export const loginWithEmailAndPassword = async(email, password) => {
     try {
         const resp = await signInWithEmailAndPassword(FirebaseAuth, email, password);
         console.log('resp', resp);
-        const { displayName, photoURL, uid, providerId } = resp.user;
+        const { displayName, photoURL, uid } = resp.user;
         return {
             ok: true,
             displayName,
             email,
             photoURL,
             uid,
-            providerId,
+            providerId: 'emailAndPassword',
             error: null,
         }
         
