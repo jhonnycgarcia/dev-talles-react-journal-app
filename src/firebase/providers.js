@@ -6,9 +6,7 @@ const googleProvider = new GoogleAuthProvider();
 export const signInWithGoogle = async() => {
     try {
         const result = await signInWithPopup(FirebaseAuth, googleProvider);
-        // const credentials = GoogleAuthProvider.credentialFromResult(result);
-        // console.log({credentials});
-        const user = result.user;
+        const { providerId , user } = result;
         // console.log({user});
         const { displayName, email, photoURL, uid } = user;
 
@@ -18,6 +16,7 @@ export const signInWithGoogle = async() => {
             email,
             photoURL,
             uid,
+            providerId,
             error: null,
         }
 
@@ -38,8 +37,7 @@ export const signInWithGoogle = async() => {
 export const registerUserWithEmailAndPassword = async({ email, password, displayName }) => {
     try {
         const resp = await createUserWithEmailAndPassword(FirebaseAuth, email, password);
-        const { uid, photoURL } = resp.user;
-        // await updateProfile(resp.user, { displayName });
+        const { uid, photoURL, providerId } = resp.user;
         await updateProfile(FirebaseAuth.currentUser, { displayName });
         return {
             ok: true,
@@ -47,6 +45,7 @@ export const registerUserWithEmailAndPassword = async({ email, password, display
             photoURL,
             email,
             displayName,
+            providerId,
             error: null,
         }
     } catch (err) {
@@ -64,13 +63,15 @@ export const registerUserWithEmailAndPassword = async({ email, password, display
 export const loginWithEmailAndPassword = async(email, password) => {
     try {
         const resp = await signInWithEmailAndPassword(FirebaseAuth, email, password);
-        const { displayName, photoURL, uid } = resp.user;
+        console.log('resp', resp);
+        const { displayName, photoURL, uid, providerId } = resp.user;
         return {
             ok: true,
             displayName,
             email,
             photoURL,
             uid,
+            providerId,
             error: null,
         }
         
