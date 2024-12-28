@@ -12,6 +12,7 @@ export const NoteView = () => {
             alignItems="center"
             sx={{ mb: 1}}
             size="12"
+            className="animate__animated animate__fadeIn animate__faster"
         >
             <Grid2>
                 <Typography fontSize={39} fontWeight="light">

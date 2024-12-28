@@ -5,6 +5,7 @@ export const NothingSelectedView = () => {
   return (
     <Grid2
         container
+        className="animate__animated animate__fadeIn animate__faster"
         direction="column"
         spacing={ 0 }
         alignItems="center"
