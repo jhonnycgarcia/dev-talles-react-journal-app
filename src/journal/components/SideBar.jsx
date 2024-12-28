@@ -1,8 +1,7 @@
+import { Box, Divider, Drawer, List, Toolbar, Typography } from "@mui/material"
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { Box, Divider, Drawer, Grid2, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar, Typography } from "@mui/material"
-import { TurnedInNot } from '@mui/icons-material';
-import { useSelector } from 'react-redux';
 import { SideBarItem } from './SideBarItem';
 
 export const SideBar = ({ drawerWidth = 240 }) => {

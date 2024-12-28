@@ -1,9 +1,13 @@
 import { Grid2, ListItem, ListItemButton, ListItemIcon, ListItemText } from "@mui/material"
 import { TurnedInNot } from "@mui/icons-material"
-import PropTypes from 'prop-types';
+import { useDispatch } from "react-redux";
 import { useMemo } from "react";
+import PropTypes from 'prop-types';
 
-export const SideBarItem = ({ title, body }) => {
+import { setActiveNote } from "../../store/journal/journalSlice";
+
+export const SideBarItem = ({ id, title = '', body, date, imagesUrls }) => {
+  const dispatch = useDispatch();
 
   const newTitle = useMemo(() => {
     return title.length > 17
@@ -11,9 +15,15 @@ export const SideBarItem = ({ title, body }) => {
       : title;
   }, [title]);
 
+  const onClickNote = () => {
+    dispatch(
+      setActiveNote({id, title, body, date, imagesUrls})
+    )
+  }
+
   return (
     <ListItem disablePadding>
-      <ListItemButton>
+      <ListItemButton onClick={onClickNote}>
         <ListItemIcon>
           <TurnedInNot />
         </ListItemIcon>
@@ -29,4 +39,7 @@ export const SideBarItem = ({ title, body }) => {
 SideBarItem.propTypes = {
   title: PropTypes.string.isRequired,
   body: PropTypes.string.isRequired,
+  date: PropTypes.number.isRequired,
+  imagesUrls: PropTypes.arrayOf(PropTypes.string),
+  id: PropTypes.string.isRequired,
 };
