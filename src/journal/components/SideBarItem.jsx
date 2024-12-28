@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 
 import { setActiveNote } from "../../store/journal/journalSlice";
 
-export const SideBarItem = ({ id, title = '', body, date, imagesUrls }) => {
+export const SideBarItem = ({ id, title = '', body, date, imageUrls }) => {
   const dispatch = useDispatch();
 
   const newTitle = useMemo(() => {
@@ -17,7 +17,7 @@ export const SideBarItem = ({ id, title = '', body, date, imagesUrls }) => {
 
   const onClickNote = () => {
     dispatch(
-      setActiveNote({id, title, body, date, imagesUrls})
+      setActiveNote({id, title, body, date, imageUrls})
     )
   }
 
