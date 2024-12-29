@@ -56,7 +56,7 @@ export const startSaveNote = () => {
 }
 
 export const startUploadingFiles = (files = []) => {
-    return async (dispatch, getState) => {
+    return async (dispatch) => {
         dispatch( setSaving() );
 
         const fileUploadPromises = [];
@@ -65,7 +65,6 @@ export const startUploadingFiles = (files = []) => {
         }
 
         const imageUrls = await Promise.all(fileUploadPromises);
-        console.log('imageUrls', imageUrls);
 
         dispatch( setPhotosToActiveNote(imageUrls) );
     }
