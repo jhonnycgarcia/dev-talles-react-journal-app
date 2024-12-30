@@ -1,6 +1,7 @@
 
 export const fileUpload = async (file) => {
-    if(!file) { throw new Error('File is required'); }
+    // if(!file) { throw new Error('File is required'); }
+    if(!file) { return null; }
     
     const cloudUrl = 'https://api.cloudinary.com/v1_1/jhonnycgarcia/image/upload';
     const formData = new FormData();
@@ -20,6 +21,7 @@ export const fileUpload = async (file) => {
 
     } catch (err) {
         console.log('err', err);
-        throw err;
+        // throw err;
+        return null;
     }
 }
