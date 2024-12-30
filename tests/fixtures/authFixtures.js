@@ -34,4 +34,5 @@ export const demoUser = {
     email: 'example@email.com',
     displayName: 'Example User',
     photoURL: 'https://dummyimage.com/200x200/000/fff',
+    providerId: 'firebase',
 }
