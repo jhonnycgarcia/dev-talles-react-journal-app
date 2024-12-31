@@ -103,6 +103,7 @@ export const LoginPage = () => {
                 variant="contained" 
                 fullWidth 
                 onClick={ onGoogleSignIn }
+                aria-label="google-btn"
                 disabled={ isAuthenticating }
               >
                 <Google />
