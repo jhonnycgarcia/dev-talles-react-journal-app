@@ -1,4 +1,6 @@
 
+export const uid = 'mock-test-uid';
+
 export const initialState = {
     status: 'checking',
     uid: null,
