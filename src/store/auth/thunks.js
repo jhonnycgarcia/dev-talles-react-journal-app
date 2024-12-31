@@ -30,7 +30,7 @@ export const startCreatingUserWithEmailAndPassword = ({email, password, displayN
     return async (dispatch) => {
         dispatch(checkingCredentials());
 
-        const { ok, uid, photoURL, error } = await registerUserWithEmailAndPassword({email, password, displayName});
+        const { ok, uid, photoURL, providerId, error } = await registerUserWithEmailAndPassword({email, password, displayName});
 
         // ! Si ocurre un error, se desconecta del usuario
         if(!ok){
@@ -38,7 +38,7 @@ export const startCreatingUserWithEmailAndPassword = ({email, password, displayN
         } 
 
         // * Se autentica exitosamente
-        dispatch(login({email, displayName, photoURL, uid}));
+        dispatch(login({email, displayName, photoURL, uid, providerId}));
     }
 }
 

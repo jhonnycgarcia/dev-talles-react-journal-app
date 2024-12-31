@@ -36,3 +36,9 @@ export const demoUser = {
     photoURL: 'https://dummyimage.com/200x200/000/fff',
     providerId: 'firebase',
 }
+
+export const demoUserRegister = {
+    email: 'example@email.com',
+    password: '123456',
+    displayName: 'Example User',
+}
