@@ -45,6 +45,7 @@ export const LoginPage = () => {
   return (
     <AuthLayout title="Login">
       <form 
+        aria-label="login-form"
         onSubmit={ onSubmit }
         className="animate__animated animate__fadeIn animate__faster"
       >
@@ -70,6 +71,11 @@ export const LoginPage = () => {
               placeholder="******"
               fullWidth
               name="password"
+              slotProps={{
+                input: {
+                  inputProps: { 'data-testid': 'password' }
+                }
+              }}
               value={ password }
               onChange={ onInputChange }
               error={ !!passwordValid && formSubmitted }
